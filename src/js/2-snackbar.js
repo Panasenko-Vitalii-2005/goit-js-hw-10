@@ -10,14 +10,14 @@ form.addEventListener("submit", (event) => {
   createPromise(delay, state)
     .then(({ value }) => {
       iziToast.success({
-        title: "Success",
-        message: value,
+        title: "✅",
+        message: `Fulfilled promise in ${delay}ms`,
       });
     })
     .catch(({ value }) => {
       iziToast.error({
-        title: "Error",
-        message: value,
+        title: "❌",
+        message: `Rejected promise in ${delay}ms`,
       });
     });
   form.reset();
@@ -27,9 +27,9 @@ function createPromise(delay, state) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (state === "fulfilled") {
-        resolve({ value: `Fulfilled after ${delay}ms` });
+        resolve({ value: `Fulfilled promise in ${delay}ms` });
       } else {
-        reject({ value: `Rejected after ${delay}ms` });
+        reject({ value: `Rejected promise in ${delay}ms` });
       }
     }, delay);
   });
